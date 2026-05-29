@@ -136,6 +136,48 @@ Se analiza el comportamiento del juego con wireshark
 
 <img width="1366" height="726" alt="Captura desde 2026-05-27 23-13-17" src="https://github.com/user-attachments/assets/31afded1-6fab-4cd8-8acc-cc48aa794cf9" />
 
+# Configuracion de equipos fisicos, Router y Switch
+
+# SWITCH CATALYST - CONFIGURACIÓN DE VLANs
+
+! --- Crear las 3 VLANs ---
+
+
+<img width="498" height="361" alt="image" src="https://github.com/user-attachments/assets/4661a4e2-6612-4831-9f4a-a9bdf2167ab8" />
+
+
+<img width="1025" height="837" alt="image" src="https://github.com/user-attachments/assets/d94acbbd-b310-45c2-804a-b5b88a1332d5" />
+
+# ROUTER CISCO 1941 - INTERFAZ ADMINISTRADOR
+
+
+<img width="813" height="341" alt="image" src="https://github.com/user-attachments/assets/d7305dbc-f0d2-41cb-afa4-8f40ee036de2" />
+
+# SUBINTERFACES PARA VLAN DOCKER Y KUBERNETES
+
+
+<img width="757" height="139" alt="image" src="https://github.com/user-attachments/assets/a9aa393e-cc0d-41f2-bcc4-f77d4bab9415" />
+
+
+<img width="877" height="187" alt="image" src="https://github.com/user-attachments/assets/df352699-1b55-42e2-8a45-7d82b10f527f" />
+
+# Verificacion de la creacion de las Vlan de Docker y Kubernetes
+
+
+<img width="1107" height="234" alt="image" src="https://github.com/user-attachments/assets/735e5eea-4ed5-464a-9ac8-54faf6e8c9fc" />
+
+-Subinterfaz VLAN 20 - Docker
+-Subinterfaz VLAN 30 - Kubernetes
+
+# Pool DHCP para Docker
+
+
+<img width="1125" height="614" alt="image" src="https://github.com/user-attachments/assets/ea64e191-8916-4aa4-9b16-e07d262ab501" />
+
+
+
+
+
 
 
 
