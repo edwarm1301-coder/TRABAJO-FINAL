@@ -178,7 +178,7 @@ Se analiza el comportamiento del juego con wireshark
 
 # Configuracion de equipos fisicos, Router y Switch
 
-# SWITCH CATALYST - CONFIGURACIÓN DE VLANs
+## SWITCH CATALYST - CONFIGURACIÓN DE VLANs
 
 ! --- Crear las 3 VLANs ---
 
@@ -188,12 +188,12 @@ Se analiza el comportamiento del juego con wireshark
 
 <img width="1025" height="837" alt="image" src="https://github.com/user-attachments/assets/d94acbbd-b310-45c2-804a-b5b88a1332d5" />
 
-# ROUTER CISCO 1941 - INTERFAZ ADMINISTRADOR
+## ROUTER CISCO 1941 - INTERFAZ ADMINISTRADOR
 
 
 <img width="813" height="341" alt="image" src="https://github.com/user-attachments/assets/d7305dbc-f0d2-41cb-afa4-8f40ee036de2" />
 
-# SUBINTERFACES PARA VLAN DOCKER Y KUBERNETES
+## SUBINTERFACES PARA VLAN DOCKER Y KUBERNETES
 
 
 <img width="757" height="139" alt="image" src="https://github.com/user-attachments/assets/a9aa393e-cc0d-41f2-bcc4-f77d4bab9415" />
@@ -201,7 +201,7 @@ Se analiza el comportamiento del juego con wireshark
 
 <img width="877" height="187" alt="image" src="https://github.com/user-attachments/assets/df352699-1b55-42e2-8a45-7d82b10f527f" />
 
-# Verificacion de la creacion de las Vlan de Docker y Kubernetes
+## Verificacion de la creacion de las Vlan de Docker y Kubernetes
 
 
 <img width="1107" height="234" alt="image" src="https://github.com/user-attachments/assets/735e5eea-4ed5-464a-9ac8-54faf6e8c9fc" />
@@ -209,10 +209,171 @@ Se analiza el comportamiento del juego con wireshark
 -Subinterfaz VLAN 20 - Docker
 -Subinterfaz VLAN 30 - Kubernetes
 
-# Pool DHCP para Docker
+## Pool DHCP para Docker
 
 
 <img width="1125" height="614" alt="image" src="https://github.com/user-attachments/assets/ea64e191-8916-4aa4-9b16-e07d262ab501" />
+
+# YOLO + Chatbot: Detección Inteligente de Logos e Integración de Microservicios en Docker
+Esta sección del proyecto implementa dos servicios inteligentes que corren dentro de contenedores Docker y se comunican entre sí de forma automática:
+
+1. **YOLO** — Un clasificador de logos de herramientas tecnológicas usando inteligencia artificial
+2. **Chatbot** — Un asistente que explica cada herramienta detectada, con soporte de voz e imágenes
+
+Todo está diseñado para que funcione en cualquier computador con Docker instalado, sin necesidad de configuraciones complicadas.
+
+---
+
+## ¿Cómo funciona YOLO en este proyecto?
+
+YOLO (You Only Look Once) es un modelo de inteligencia artificial que analiza imágenes y las clasifica en fracciones de segundo. En este proyecto lo entrenamos desde cero para que reconozca logos de herramientas de infraestructura tecnológica.
+
+### ¿Qué herramientas detecta?
+
+| Logo | Herramienta | ¿Para qué se usa? |
+|------|------------|-------------------|
+| 🐳 | Docker | Crear y gestionar contenedores |
+| ☸️ | Kubernetes | Orquestar contenedores a escala |
+| 🤖 | Jenkins | Automatizar despliegues de software |
+| 📦 | Ansible | Configurar servidores automáticamente |
+| 🏗️ | Terraform | Crear infraestructura como código |
+| 🦭 | Podman | Alternativa a Docker sin permisos root |
+| 📊 | Grafana | Visualizar métricas y dashboards |
+
+### ¿Cómo lo entrenamos?
+
+Como no teníamos miles de imágenes disponibles, usamos una técnica llamada **Data Augmentation**: tomamos pocas imágenes base de cada logo y generamos variaciones automáticas aplicando rotaciones, cambios de brillo y contraste. Esto le enseñó al modelo a reconocer los logos aunque estén en diferentes posiciones o condiciones de luz.
+
+El entrenamiento duró **30 épocas** y el modelo alcanzó un **100% de precisión** en el conjunto de validación.
+
+### ¿Cómo se expone el servicio?
+
+El modelo corre dentro de un contenedor Docker con un servidor web Flask. Expone dos rutas:
+
+- `GET /` → Interfaz web para subir imágenes manualmente
+- `POST /api/clasificar` → API que recibe una imagen y retorna el nombre de la herramienta detectada en formato JSON
+
+---
+
+## 🤖 ¿Cómo funciona el Chatbot?
+
+El chatbot es el asistente oficial del proyecto. Su diseño tiene tres características principales:
+
+### 1. Modo con API / Modo sin API (Fallback)
+El sistema está preparado para dos escenarios:
+
+- **Con API Key de Anthropic**: usa el modelo Claude para generar respuestas elaboradas y naturales
+- **Sin API Key (offline)**: activa automáticamente una base de conocimiento local que responde sobre todas las herramientas del proyecto sin necesidad de internet
+
+Esto garantiza que el chatbot **nunca deje de funcionar**, independientemente del entorno donde se despliegue.
+
+### 2. Base de conocimiento del proyecto (System Prompt)
+Se programó un prompt de sistema que le indica al modelo exactamente quién es y qué sabe: la arquitectura del proyecto, los tres contenedores, y las herramientas tecnológicas involucradas. Así las respuestas siempre son relevantes y educativas para el contexto académico.
+
+### Tres formas de interactuar
+
+| Modo | Descripción |
+|------|-------------|
+| ✍️ Texto | Escribe tu pregunta y recibe respuesta inmediata |
+| 🎤 Voz | Habla por el micrófono y el chatbot responde en voz alta usando la Web Speech API del navegador |
+| 📷 Logo | Sube una imagen de un logo → el chatbot llama a YOLO, obtiene la clasificación y genera una explicación automática |
+
+<img width="1917" height="592" alt="image" src="https://github.com/user-attachments/assets/9080e827-289a-4197-a341-ce3b90d29f4a" />
+
+<img width="1902" height="993" alt="image" src="https://github.com/user-attachments/assets/c58a06eb-ea41-4143-9ec6-2c7870f439e6" />
+
+---
+
+## Comunicación entre contenedores
+
+La parte más importante de la implementación es cómo YOLO y el Chatbot se comunican. Ambos corren en la misma red interna de Docker llamada `proyecto-net`, lo que les permite llamarse por nombre de servicio.
+
+```
+[Usuario en el navegador]
+        │
+        ▼
+[Chatbot - Puerto 5001]
+        │ Sube imagen de logo
+        ▼
+[YOLO - Puerto 5000] ──► Clasifica el logo ──► Retorna JSON
+        │                {"herramienta": "docker", "confianza": 100}
+        ▼
+[Chatbot] ──► Genera explicación ──► Muestra resultado al usuario
+```
+
+Para que funcionen juntos se usa `docker-compose`, que levanta ambos contenedores en la misma red y permite que se comuniquen usando sus nombres (`yolo` y `chatbot`) como si fueran dominios internos.
+
+<img width="1902" height="218" alt="image" src="https://github.com/user-attachments/assets/f2aed1a1-e42e-4296-8d3d-180a93cd01c0" />
+
+<img width="1918" height="401" alt="image" src="https://github.com/user-attachments/assets/a5aa9bf3-1a60-4af3-b030-6b41df30e15f" />
+
+
+---
+
+## Requisitos para correrlo
+
+- Docker Desktop instalado y corriendo
+- Windows 10/11 o Linux
+- ~3GB de espacio libre
+- Conexión a internet solo para el primer build
+
+---
+
+## Cómo iniciar el proyecto
+
+**Levantar todo:**
+```bash
+docker compose up -d
+```
+
+**Abrir en el navegador:**
+- Clasificador YOLO → http://localhost:5000
+- Chatbot → http://localhost:5001
+
+**Apagar todo:**
+```bash
+docker compose down
+```
+
+---
+
+## 📁 Estructura de archivos
+
+```
+proyecto_final/
+├── yolo/
+│   ├── app.py              # Servidor Flask + inferencia YOLO
+│   ├── Dockerfile          # Python 3.10 + PyTorch CPU + Ultralytics
+│   └── models/
+│       └── best.pt         # Modelo entrenado (7 clases, 100% accuracy)
+│
+├── chatbot/
+│   ├── app.py              # Servidor Flask + lógica del chat + fallback
+│   ├── Dockerfile          # Python 3.10 + Flask + Requests
+│   └── templates/
+│       └── index.html      # Interfaz web (texto + voz + imagen)
+│
+└── docker-compose.yml      # Orquesta los dos servicios en red compartida
+```
+
+<img width="1007" height="325" alt="image" src="https://github.com/user-attachments/assets/a9fc046a-5539-4107-bc94-632385ae8543" />
+
+<img width="1052" height="338" alt="image" src="https://github.com/user-attachments/assets/385ac56c-e88b-4971-8d22-b4fb65336a5a" />
+
+
+---
+
+## Tecnologías utilizadas
+
+| Tecnología | Uso |
+|-----------|-----|
+| Docker + Docker Compose | Contenedores y red interna |
+| Python 3.10 | Lenguaje de backend |
+| YOLOv8 (Ultralytics) | Modelo de clasificación de imágenes |
+| PyTorch CPU | Motor de inferencia del modelo |
+| Flask | Servidor web de ambos contenedores |
+| Web Speech API | Voz en el chatbot (nativa del navegador) |
+| Anthropic Claude (opcional) | Motor de lenguaje natural del chatbot |
 
 
 
