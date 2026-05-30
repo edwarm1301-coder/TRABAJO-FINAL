@@ -460,39 +460,116 @@ proyecto_final/
 | Anthropic Claude (opcional) | Motor de lenguaje natural del chatbot |
 
 
+#   CRACION DE IMÁGENES EN ROBOFLOW PARA EL LOGO DE DOCKER  
+ 
+#  https://roboflow.com/
+
+1.	Usamos la opción en la página web de aumento de datos usando modificaciones de una cantidad pequeñas de imágenes.
+
+2.	Generamos una nueva versión y la vamos guardando.
 
 
+3.	Preprocesamiento y aumento de datos, cada argumentación crea nuevas variantes de tus imágenes.
+
+4.	Aumentando la cantidad de imágenes de 10 en 10 hasta completar las 100 imágenes solicitadas.
 
 
+5.	Generar dataset, Roboflow empezará a crear automáticamente las imágenes nuevas.
+
+6.	Entrenar modelo para descargar el dataset d eimagenes.
 
 
+7.	Exportadas en formato para YOLOv8.
+
+   #  ADMINISTRADOR
+      Debian Linux
+      IP: 192.168.51.10
+      Grafana + Wireshark                     
+      Puerto: Gi0/0
+
+<img width="1163" height="654" alt="image" src="https://github.com/user-attachments/assets/e1a70882-4bcc-472c-9c6b-126f8d49e991" />
+
+<img width="1135" height="639" alt="image" src="https://github.com/user-attachments/assets/3dc76f2d-ab68-4ad5-9363-34ebf2815185" />
+
+<img width="1115" height="626" alt="image" src="https://github.com/user-attachments/assets/1d9672b7-4a96-451b-9201-70fbbaed5437" />
+
+<img width="1124" height="632" alt="image" src="https://github.com/user-attachments/assets/081733f2-85d7-4768-aae6-bcf9f9aacf65" />
 
 
+# CONFIGURACIÓN E INSTALACIÓN DE DEBÍAN 13.5
+
+#   Software free VirtualBox para instalación de Debian 13.5
+
+#   Configuración Inicial:
 
 
+<img width="1080" height="572" alt="image" src="https://github.com/user-attachments/assets/00ace63b-922a-4dbd-852e-003fe4b396e2" />
 
 
+<img width="1087" height="611" alt="image" src="https://github.com/user-attachments/assets/11ba0a2f-17ac-491d-98ff-12f6ad9a64a7" />
 
 
+<img width="1130" height="593" alt="image" src="https://github.com/user-attachments/assets/087cf2d7-f25c-45c7-acc2-1270ddfafe89" />
 
 
+#   CONFIGURACIÓN E INSTALACIÓN DE WIRESHARK EN DEBIAN
 
 
+<img width="1087" height="573" alt="image" src="https://github.com/user-attachments/assets/86ea7240-b858-4968-a1c2-c7d77b4166e3" />
 
 
+<img width="997" height="796" alt="image" src="https://github.com/user-attachments/assets/fd6bf137-9549-486d-98fc-c6939cfed40f" />
 
 
+<img width="1075" height="458" alt="image" src="https://github.com/user-attachments/assets/f498e519-2c8c-42a6-84aa-e90d92669ff2" />
 
 
+<img width="1089" height="572" alt="image" src="https://github.com/user-attachments/assets/99d94f6a-d63b-40c9-b1bd-4933e94f2cc6" />
 
 
+<img width="1129" height="598" alt="image" src="https://github.com/user-attachments/assets/2885c873-616f-46dc-ac4b-f80ae15566e8" />
 
 
+#   CONFIGURACIÓN E INSTALACIÓN DE GRAFANA DASHBOARD EN DEBIAN
 
 
+<img width="1097" height="565" alt="image" src="https://github.com/user-attachments/assets/aac8487d-26e6-464a-85d5-9cf2f4800cde" />
 
 
+<img width="1117" height="591" alt="image" src="https://github.com/user-attachments/assets/afb6acff-6306-404c-8543-e4f084151581" />
 
+
+<img width="1098" height="652" alt="image" src="https://github.com/user-attachments/assets/547648c6-4437-42dc-849e-6684ef5a28ae" />
+
+
+<img width="1143" height="607" alt="image" src="https://github.com/user-attachments/assets/a76f01ae-bac6-4a16-85de-5daff938625a" />
+
+
+<img width="1119" height="607" alt="image" src="https://github.com/user-attachments/assets/2a7fdfbe-37a7-42c0-9731-c6ecd384e272" />
+
+
+<img width="1097" height="589" alt="image" src="https://github.com/user-attachments/assets/fc86321c-5f95-470f-a210-10390793a2a1" />
+
+
+#   CONFIGURACIÓN DE IP ESTÁTICA EN DEBIAN 13.
+#   Ejecutamos la consola como administradores en debian en virtualbox:
+ 
+#   En VirtualBox configura el adaptador de red de la VM Debian así:
+#   Configuración de comandos en Debian IP estática:
+
+    auto enp0s3
+    iface enp0s3 inet static    
+    address 192.168.51.10    
+    netmask 255.255.255.0   
+    gateway 192.168.51.1   
+    dns-nameservers 8.8.8.8
+
+    sudo systemctl restart networking
+
+    ip a
+    ping 192.168.51.1
+
+<img width="1101" height="535" alt="image" src="https://github.com/user-attachments/assets/3fd1bc24-4316-4a74-a71e-b7361595046a" />
 
 
 
