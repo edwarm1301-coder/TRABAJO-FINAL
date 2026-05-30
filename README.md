@@ -124,7 +124,7 @@ Finalmente, el bloque principal del programa inicializa el demonio de Flask expo
 <img width="1365" height="720" alt="image" src="https://github.com/user-attachments/assets/d2c2aff8-bffd-448f-ac37-356eabff9c70" />
 <img width="1365" height="680" alt="image" src="https://github.com/user-attachments/assets/280e6ae0-96b5-4907-b7f9-da3b2027b0bd" />
 
-## INSTALCION DE KUBECTL, MINIKUBE Y JUEGO SUPERTUXKART EN KALI LINUX
+## INSTALACION DE KUBECTL, MINIKUBE Y JUEGO SUPERTUXKART EN KALI LINUX
 
 Se realiza la actulización y descarga de paquetes nuevo para el kali linux
 
